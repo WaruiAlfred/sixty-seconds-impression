@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+<!--Styles section-->
+{% block styles %}
+  {{ super()}}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock%}
+
+<!--Page content section-->
+{% block content%}
+  <div class="container">
+    <div class="description mr-auto ml-auto">
+      <p>As a user you can submit your one minute pitch under the various categories provided.Other app users can vote on it and leave comments.</p>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{{url_for('static',filename='images/homepage.png')}}" alt="example pitching" class="base-img">
+      </div>
+      <div class="col-md-6 navigate">
+        <h1 class="text-center">How to navigate the application</h1>
+        <div class="viewing-pitches">
+          <p><span>1.</span>Click on the <i>Pitch Categories</i> from the navbar and select a category and you will be redirected to the page from which you can view different pitches.</p>
+          <br>
+          <p><span>2.</span>Once in the page.You can:</p>
+          <ul>
+            <li>Upvote a pitch.</li>
+            <li>Upvote a pitch.</li>
+          </ul>
+          <br>
+          <p><span>3.</span>For you to leave a comment or post a pitch you must sign in first.</p>
+          <br>
+        </div>
+        <div class="profile">
+          <p><span>4.</span>You can access your profile page and update it after signing in from the navbar.i.e<i>Captain</i></p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
