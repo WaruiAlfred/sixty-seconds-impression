@@ -17,6 +17,15 @@
           <p>{{ pitch.pitch }}</p>
           <p><i>Submitted on {{ pitch.submitted }}</i></p>
         </div>
+        <!--Displaying comments-->
+        <div class="comments" style="background-color: purple;border-radius:30px;padding:10px;">
+          <h1 class="text-center">Comments</h1>
+          {%for comments in comments_found%}
+            <ul>
+              <li>{{comments.comment}}</li>
+            </ul>
+          {%endfor%}
+        </div>
       </div>
       <!--Comments form-->
       <div class="col-md-4">
