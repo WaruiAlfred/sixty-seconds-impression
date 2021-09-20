@@ -4,10 +4,16 @@ from app.models import User,Pitches,Comments
 from flask_migrate import Migrate,MigrateCommand
 
 # App instance created
-app = create_app('development')
+app = create_app('production')
 
 manager = Manager(app)
 manager.add_command('server',Server)
+@manager.command
+def test(): 
+  '''Run the unit tests.'''
+  import unittest
+  tests = unittest.TestLoader().discover('tests')
+  unittest.TextTestRunner(verbosity=2).run(tests)
 
 #flask-script shell
 @manager.shell
