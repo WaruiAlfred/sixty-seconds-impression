@@ -1,6 +1,6 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import User,Pitches,Comments
+from ..models import User,Pitches,Comments,Upvote,Downvote
 from flask_login import login_required,current_user
 from .forms import UpdateProfile,PitchForm,CommentsForm
 from .. import db,photos
@@ -26,11 +26,8 @@ def  gamepitch():
   Function that returns data displayed in the gamepitch template
   '''
   game_pitches = get_pitches("Game pitch")
-  for pitch in game_pitches: 
-    comments_found = Comments.get_comments(pitch.id)
-    print(comments_found)
   title = "Impression in 60 seconds-gamepitch"
-  return render_template('pitch-categories/game.html',title = title, game_pitches = game_pitches,comments = comments_found)
+  return render_template('pitch-categories/game.html',title = title, game_pitches = game_pitches)
 
 @main.route('/interview')
 def  interviewpitch():
@@ -114,5 +111,24 @@ def new_comment(id):
     new_comment = Comments(comment = form.comment.data,user=current_user,pitch_id = id)
     new_comment.save_comment()
   
+  comments_found = Comments.get_comments(id)
   title = 'Comments'
-  return render_template('new_comment.html', title = title, comments_form = form, pitch = pitch)
+  return render_template('new_comment.html', title = title, comments_form = form, pitch = pitch,comments_found = comments_found)
+
+@main.route('/like/<int:id>', methods = ['POST', 'GET'])
+def like(id):
+    get_pitches = Upvote.get_upvotes(id)
+    for pitch in get_pitches:
+      continue
+    new_vote = Upvote( pitch_id=id)
+    new_vote.save()     
+    return redirect(url_for('main.index'))    
+
+@main.route('/dislike/<int:id>', methods = ['POST','GET'])
+def dislike(id):
+    get_pitch = Downvote.get_downvotes(id)
+    for pitch in get_pitch:
+      continue
+    new_downvote = Downvote(pitch_id=id)
+    new_downvote.save()     
+    return redirect(url_for('main.index'))  

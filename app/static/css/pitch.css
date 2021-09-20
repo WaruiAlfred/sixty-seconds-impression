@@ -14,17 +14,6 @@ body{
   margin-bottom: 15px;
   padding: 5px;
 }
-/*voting*/
-.voting input{
-  border: none;
-  width: 50px;
-  background: none;
-  font-size: 20px;
-  margin: 0 10px;
-  pointer-events:  none;
-}
-.voting .btn{
-  font-size: 20px;
-}
+
 
 
