@@ -1,7 +1,21 @@
 {% extends 'pitch-categories/pitchbase.html' %}
 
+<!--Styles section-->
+{% block styles %}
+  {{ super()}}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/pitch.css')}}">
+{% endblock%}
 {% block  content %}
   <div class="container">
-    <h1> Project </h1>
+    <h1 class="text-center pitch"> Project Pitches </h1>
+    <!--Displaying pitches-->
+    {% for pitch in interview_pitches %}
+      <div class="card">
+        <h1>{{ pitch.pitch_title }}</h1>
+        <p>{{ pitch.pitch }}</p>
+        <p><i>Submitted on {{ pitch.submitted }}</i></p>
+      </div>
+    {% endfor %}
+    
   </div>
 {% endblock %}

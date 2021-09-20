@@ -1,0 +1,20 @@
+{% extends 'pitch-categories/pitchbase.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+<!--Styles section-->
+{% block styles %}
+  {{ super()}}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/profile.css')}}">
+{% endblock%}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 update-form">
+      {{ wtf.quick_form(form) }}
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+{% endblock %}

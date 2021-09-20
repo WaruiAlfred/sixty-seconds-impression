@@ -1,0 +1,17 @@
+/*entire body*/
+body{
+  background-color: #cbc3e3;
+  font-size: 20px;
+}
+/*card*/
+.card{
+  font-size: 15px;
+  width: 600px;
+  padding: 7px;
+  border-radius: 40px;
+}
+
+/*update template*/
+.update-form{
+  margin-top: 50px;
+}

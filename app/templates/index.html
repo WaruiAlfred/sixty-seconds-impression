@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
 <!--Styles section-->
 {% block styles %}
@@ -9,9 +10,9 @@
 
 <!--Page content section-->
 {% block content%}
-  <div class="container">
+  <div class="container-fluid">
     <div class="description mr-auto ml-auto">
-      <p>As a user you can submit your one minute pitch under the various categories provided.Other app users can vote on it and leave comments.</p>
+      <h1>Unleash your potential...</h1>
     </div>
     <div class="row">
       <div class="col-md-6">
@@ -25,16 +26,36 @@
           <p><span>2.</span>Once in the page.You can:</p>
           <ul>
             <li>Upvote a pitch.</li>
-            <li>Upvote a pitch.</li>
+            <li>Downvote a pitch.</li>
           </ul>
           <br>
           <p><span>3.</span>For you to leave a comment or post a pitch you must sign in first.</p>
           <br>
         </div>
         <div class="profile">
-          <p><span>4.</span>You can access your profile page and update it after signing in from the navbar.i.e<i>Captain</i></p>
+          <p><span>4.</span>You can access your profile page and update it after signing in from the navbar.i.e<i>Profile</i></p>
         </div>
       </div>
+    </div>
+    <div class="new-pitch">
+      <h1 class="text-center mt-5 mb-5"><b>Upload a pitch</b></h1>
+      {% if current_user.is_authenticated %}
+        <div class="row">
+          <div class="col-md-2"> </div>
+          <div class="col-md-8">
+            {{ wtf.quick_form(pitch_form) }}
+          </div>
+          <div class="col-md-2"> </div>
+        </div>
+      {% else %}
+        <div class="row">
+          <div class="col-md-2"> </div>
+          <div class="col-md-8">
+            <p>You have to sign in first.</p>
+          </div>
+          <div class="col-md-2"> </div>
+        </div>
+      {% endif %}
     </div>
   </div>
 {% endblock %}

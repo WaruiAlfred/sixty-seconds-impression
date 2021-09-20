@@ -1,7 +1,47 @@
 {% extends 'pitch-categories/pitchbase.html' %}
 
+<!--Styles section-->
+{% block styles %}
+  {{ super()}}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/pitch.css')}}">
+{% endblock%}
+
 {% block  content %}
   <div class="container">
-    <h1> Game </h1>
+    <h1 class="text-center pitch"> Game Pitches </h1>
+    <!--Displaying pitches-->
+    {% for pitch in game_pitches %}
+      <div class="card" >
+        <h1>{{ pitch.pitch_title }}</h1>
+        <p>{{ pitch.pitch }}</p>
+        <p><i>Submitted on {{ pitch.submitted }}</i></p>
+        <div class="ml-auto voting"><b><p class="btn" id="likebtn"><i class="fa fa-thumbs-up"></i></p><input type="number" id="like" value="0" name=""> <p class="btn" id="dislikebtn"><i class="fa fa-thumbs-down"></i></p><input type="number" id="dislike" value="0" name=""> </b></div>
+        <hr>
+        <a class="btn  text-center" href="/comments/{{pitch.id}}">Leave a comment </a>
+        <!--Displaying comments-->
+        <div class="card-footer">
+        {% for user_comment in comments %}   
+          <p>{{user_comment.comment}}</p>
+        {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+    
   </div>
+  <script type="text/javascript">
+    let likebtn = document.querySelector('#likebtn');
+    let dislikebtn = document.querySelector('#dislikebtn');
+    let like = document.querySelector('#like');
+    let dislike = document.querySelector('#dislike');
+
+    likebtn.addEventListener('click',()=>{
+      like.value = parseInt(like.value) + 1;
+      like.style.color = "#12ff00";
+    })
+
+    dislikebtn.addEventListener('click',()=>{
+      dislike.value = parseInt(dislike.value) + 1;
+      dislike.style.color = "#ff0000";
+    })
+  </script>
 {% endblock %}
